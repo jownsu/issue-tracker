@@ -1,6 +1,8 @@
+/* NEXT */
+import Link from "next/link";
+
 /* PLUGINS */
 import { Button } from "@radix-ui/themes";
-import Link from "next/link";
 
 const IssuesPage = () => {
 	return (
