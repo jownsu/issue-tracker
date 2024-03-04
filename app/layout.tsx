@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" className={inter.variable}>
 			<body>
-				<Theme accentColor="violet">
+				<Theme accentColor="violet" appearance="light">
 					<NavBar />
 					<main className="p-5">{children}</main>
 				</Theme>
