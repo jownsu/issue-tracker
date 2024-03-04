@@ -18,9 +18,9 @@ import { createIssueSchema } from "@/app/validationSchema";
 
 /* COMPONENTS */
 import Spinner from "@/app/components/Spinner";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 /* STYLES */
-import ErrorMeessage from "@/app/components/ErrorMeessage";
 import "easymde/dist/easymde.min.css";
 
 type NewIssueForm = z.infer<typeof createIssueSchema>;
@@ -64,7 +64,7 @@ const NewIssuePage = () => {
 				<TextField.Root>
 					<TextField.Input placeholder="Title" {...register("title")} />
 				</TextField.Root>
-				<ErrorMeessage>{errors.title?.message}</ErrorMeessage>
+				<ErrorMessage>{errors.title?.message}</ErrorMessage>
 				<Controller
 					name="description"
 					control={control}
@@ -79,7 +79,7 @@ const NewIssuePage = () => {
 						);
 					}}
 				/>
-				<ErrorMeessage>{errors.description?.message}</ErrorMeessage>
+				<ErrorMessage>{errors.description?.message}</ErrorMessage>
 				<Button type="submit" disabled={isSubmitting}>
 					Submit New Issue {isSubmitting && <Spinner />}
 				</Button>
