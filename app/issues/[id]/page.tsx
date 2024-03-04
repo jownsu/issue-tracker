@@ -11,6 +11,9 @@ import Markdown from "react-markdown";
 /* COMPONENTS */
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 
+/* TEMP */
+import delay from "delay";
+
 interface Props {
 	params: { id: string };
 }
@@ -22,8 +25,10 @@ const IssueDetailsPage = async ({ params }: Props) => {
 
 	if (!issue) notFound();
 
+	await delay(2000);
+
 	return (
-		<div>
+		<div className="max-w-xl">
 			<Heading>{issue.title}</Heading>
 			<Flex gap={"3"} my={"2"}>
 				<IssueStatusBadge status={issue.status} />

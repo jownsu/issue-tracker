@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 /* PLUGINS */
-import { Button, Callout, Text, TextField } from "@radix-ui/themes";
-import axios from "axios";
-import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { Button, Callout, TextField } from "@radix-ui/themes";
+import axios from "axios";
 import dynamic from "next/dynamic";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 
 /* SCHEMAS */
@@ -20,8 +20,8 @@ import { createIssueSchema } from "@/app/validationSchema";
 import Spinner from "@/app/components/Spinner";
 
 /* STYLES */
-import "easymde/dist/easymde.min.css";
 import ErrorMeessage from "@/app/components/ErrorMeessage";
+import "easymde/dist/easymde.min.css";
 
 type NewIssueForm = z.infer<typeof createIssueSchema>;
 

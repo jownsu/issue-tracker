@@ -1,5 +1,6 @@
 /* PLUGINS */
-import { Skeleton, Table } from "@radix-ui/themes";
+import { Table } from "@radix-ui/themes";
+import Skeleton from "react-loading-skeleton";
 
 /* COMPONENTS */
 import IssueActions from "./components/IssueActions";
@@ -35,7 +36,7 @@ const loading = () => {
 								</div>
 							</Table.Cell>
 							<Table.Cell className="hidden md:table-cell">
-								<Skeleton />
+								<Skeleton width={"5rem"} />
 							</Table.Cell>
 							<Table.Cell className="hidden md:table-cell">
 								<Skeleton />
