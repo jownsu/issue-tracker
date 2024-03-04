@@ -68,9 +68,11 @@ const NewIssuePage = () => {
 				<Controller
 					name="description"
 					control={control}
-					render={({ field }) => (
-						<SimpleMDE placeholder="Description" {...field} />
-					)}
+					render={({ field }) => {
+						return (
+							<SimpleMDE placeholder="Description" {...field} ref={null} />
+						);
+					}}
 				/>
 				<ErrorMeessage>{errors.description?.message}</ErrorMeessage>
 				<Button type="submit" disabled={isSubmitting}>
