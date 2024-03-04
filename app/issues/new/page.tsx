@@ -68,9 +68,14 @@ const NewIssuePage = () => {
 				<Controller
 					name="description"
 					control={control}
-					render={({ field }) => {
+					render={({ field: { onBlur, onChange, value } }) => {
 						return (
-							<SimpleMDE placeholder="Description" {...field} ref={null} />
+							<SimpleMDE
+								placeholder="Description"
+								onBlur={onBlur}
+								onChange={onChange}
+								value={value}
+							/>
 						);
 					}}
 				/>
