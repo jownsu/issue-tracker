@@ -24,7 +24,7 @@ import "easymde/dist/easymde.min.css";
 
 type NewIssueForm = z.infer<typeof createIssueSchema>;
 
-const NewIssuePage = () => {
+const NewIssuePage = async () => {
 	const {
 		register,
 		control,

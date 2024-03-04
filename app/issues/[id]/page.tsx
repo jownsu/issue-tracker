@@ -11,9 +11,6 @@ import Markdown from "react-markdown";
 /* COMPONENTS */
 import { IssueStatusBadge } from "@/app/components";
 
-/* TEMP */
-import delay from "delay";
-
 interface Props {
 	params: { id: string };
 }
@@ -24,8 +21,6 @@ const IssueDetailsPage = async ({ params }: Props) => {
 	const issue = await prisma.issue.findUnique({ where: { id: +params.id } });
 
 	if (!issue) notFound();
-
-	await delay(2000);
 
 	return (
 		<div className="max-w-xl">
