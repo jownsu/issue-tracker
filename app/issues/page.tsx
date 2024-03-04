@@ -1,6 +1,5 @@
 /* PLUGINS */
 import { Table } from "@radix-ui/themes";
-import Link from "next/link";
 
 /* CLIENT */
 import prisma from "@/prisma/schema";
@@ -8,6 +7,7 @@ import prisma from "@/prisma/schema";
 /* COMPONENTS */
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import IssueActions from "./components/IssueActions";
+import Link from "../components/Link";
 
 /* TEMP */
 import delay from "delay";
