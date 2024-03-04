@@ -16,6 +16,9 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false }
 /* SCHEMAS */
 import { createIssueSchema } from "@/app/validationSchema";
 
+/* COMPONENTS */
+import Spinner from "@/app/components/Spinner";
+
 /* STYLES */
 import "easymde/dist/easymde.min.css";
 import ErrorMeessage from "@/app/components/ErrorMeessage";
@@ -37,12 +40,15 @@ const NewIssuePage = () => {
 	});
 	const router = useRouter();
 	const [error, setError] = useState("");
+	const [isSubmitting, setSubmitting] = useState(false);
 
 	const handleNewIssueSubmit = handleSubmit(async (data) => {
+		setSubmitting(true);
 		try {
 			await axios.post("/api/issues", data);
 			router.push("/issues");
 		} catch (error) {
+			setSubmitting(false);
 			setError("Something went wrong");
 		}
 	});
@@ -67,7 +73,9 @@ const NewIssuePage = () => {
 					)}
 				/>
 				<ErrorMeessage>{errors.description?.message}</ErrorMeessage>
-				<Button>Submit New Issue</Button>
+				<Button type="submit" disabled={isSubmitting}>
+					Submit New Issue {isSubmitting && <Spinner />}
+				</Button>
 			</form>
 		</div>
 	);
