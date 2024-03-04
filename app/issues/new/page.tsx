@@ -17,8 +17,7 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false }
 import { createIssueSchema } from "@/app/validationSchema";
 
 /* COMPONENTS */
-import Spinner from "@/app/components/Spinner";
-import ErrorMessage from "@/app/components/ErrorMessage";
+import { Spinner, ErrorMessage } from "@/app/components";
 
 /* STYLES */
 import "easymde/dist/easymde.min.css";
