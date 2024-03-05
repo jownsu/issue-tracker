@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 
 /* PLUGINS */
-import { Theme } from "@radix-ui/themes";
+import { Container, Theme } from "@radix-ui/themes";
 import { Inter } from "next/font/google";
 
 /* COMPONENTS */
@@ -29,7 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body>
 				<Theme accentColor="violet" appearance="light">
 					<NavBar />
-					<main className="p-5">{children}</main>
+					<Container>
+						<main className="p-5">{children}</main>
+					</Container>
 				</Theme>
 			</body>
 		</html>
