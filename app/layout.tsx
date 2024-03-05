@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" className={inter.variable}>
 			<body>
 				<AuthProvider>
-					<Theme accentColor="violet" appearance="light">
+					<Theme accentColor="violet">
 						<NavBar />
 						<Container>
 							<main className="p-5">{children}</main>
