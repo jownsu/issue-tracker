@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<Theme accentColor="violet">
 						<NavBar />
 						<Container>
-							<main className="p-5">{children}</main>
+							<main>{children}</main>
 						</Container>
 					</Theme>
 				</AuthProvider>
