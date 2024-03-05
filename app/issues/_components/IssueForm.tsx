@@ -8,10 +8,9 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
-import dynamic from "next/dynamic";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), { ssr: false });
+import SimpleMDE from "react-simplemde-editor";
 
 /* SCHEMAS */
 import { issueSchema } from "@/app/validationSchema";
