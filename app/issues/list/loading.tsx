@@ -2,7 +2,7 @@
 import { Table } from "@radix-ui/themes";
 
 /* COMPONENTS */
-import IssueActions from "./_components/IssueActions";
+import IssueActions from "../_components/IssueActions";
 import { Skeleton } from "@/app/components";
 
 const loading = () => {
