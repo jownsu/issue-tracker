@@ -12,6 +12,7 @@ import NavBar from "./NavBar";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
+import AuthProvider from "./auth/Provider";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -27,12 +28,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" className={inter.variable}>
 			<body>
-				<Theme accentColor="violet" appearance="light">
-					<NavBar />
-					<Container>
-						<main className="p-5">{children}</main>
-					</Container>
-				</Theme>
+				<AuthProvider>
+					<Theme accentColor="violet" appearance="light">
+						<NavBar />
+						<Container>
+							<main className="p-5">{children}</main>
+						</Container>
+					</Theme>
+				</AuthProvider>
 			</body>
 		</html>
 	);
