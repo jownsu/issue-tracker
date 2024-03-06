@@ -7,12 +7,13 @@ import { Inter } from "next/font/google";
 
 /* COMPONENTS */
 import NavBar from "./NavBar";
+import AuthProvider from "./auth/Provider";
+import QueryClientProvider from "./QueryClientProvider";
 
 /* STYLES */
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
-import AuthProvider from "./auth/Provider";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -28,14 +29,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" className={inter.variable}>
 			<body>
-				<AuthProvider>
-					<Theme accentColor="violet">
-						<NavBar />
-						<Container>
-							<main>{children}</main>
-						</Container>
-					</Theme>
-				</AuthProvider>
+				<QueryClientProvider>
+					<AuthProvider>
+						<Theme accentColor="violet">
+							<NavBar />
+							<Container>
+								<main>{children}</main>
+							</Container>
+						</Theme>
+					</AuthProvider>
+				</QueryClientProvider>
 			</body>
 		</html>
 	);
