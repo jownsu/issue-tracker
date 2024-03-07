@@ -1,24 +1,35 @@
-import { issueSchema } from "@/app/validationSchema";
+import { updateIssueSchema } from "@/app/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/schema";
 import { getServerSession } from "next-auth";
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
-	const session = await getServerSession();
-	if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 404 });
+	// const session = await getServerSession();
+	// if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 404 });
 
 	const body = await request.json();
 
-	const validation = issueSchema.safeParse(body);
+	const validation = updateIssueSchema.safeParse(body);
 
 	if (!validation.success)
 		return NextResponse.json(validation.error.format(), { status: 400 });
 
+	const { title, description, userId } = body;
+
+	if (userId) {
+		const user = await prisma.user.findUnique({ where: { id: userId } });
+
+		if (!user) {
+			return NextResponse.json({ error: "Invalid user" }, { status: 400 });
+		}
+	}
+
 	const updatedIssue = await prisma.issue.update({
 		where: { id: +params.id },
 		data: {
-			title: body.title,
-			description: body.description
+			title,
+			description,
+			userId
 		}
 	});
 
