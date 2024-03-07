@@ -10,6 +10,7 @@ import { Skeleton } from "@/app/components";
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 	const {
@@ -23,6 +24,8 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 		retry: 3
 	});
 
+	const router = useRouter();
+
 	if (error) return null;
 
 	if (isLoading) return <Skeleton />;
@@ -32,6 +35,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 			defaultValue={issue.userId || " "}
 			onValueChange={(userId) => {
 				axios.put(`/api/issues/${issue.id}`, { userId: userId.trim() || null });
+				router.refresh();
 			}}
 		>
 			<Select.Trigger placeholder="Assign..." />
