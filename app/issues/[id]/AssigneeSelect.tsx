@@ -14,16 +14,7 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
-	const {
-		data: users,
-		isLoading,
-		error
-	} = useQuery({
-		queryKey: ["users"],
-		queryFn: () => axios.get<User[]>("/api/users").then((res) => res.data),
-		staleTime: 60 * 1000,
-		retry: 3
-	});
+	const { data: users, isLoading, error } = useUsers();
 
 	const router = useRouter();
 
@@ -31,21 +22,20 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 
 	if (isLoading) return <Skeleton />;
 
+	const assignUser = (userId: string) => {
+		axios
+			.put(`/api/issues/${issue.id}`, {
+				userId: userId.trim() || null
+			})
+			.catch(() => {
+				toast.error("Changes could not be saved");
+			});
+		router.refresh();
+	};
+
 	return (
 		<>
-			<Select.Root
-				defaultValue={issue.userId || " "}
-				onValueChange={(userId) => {
-					axios
-						.put(`/api/issues/${issue.id}`, {
-							userId: userId.trim() || null
-						})
-						.catch(() => {
-							toast.error("Changes could not be saved");
-						});
-					router.refresh();
-				}}
-			>
+			<Select.Root defaultValue={issue.userId || " "} onValueChange={assignUser}>
 				<Select.Trigger placeholder="Assign..." />
 				<Select.Content>
 					<Select.Group>
@@ -63,5 +53,13 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
 		</>
 	);
 };
+
+const useUsers = () =>
+	useQuery({
+		queryKey: ["users"],
+		queryFn: () => axios.get<User[]>("/api/users").then((res) => res.data),
+		staleTime: 60 * 1000,
+		retry: 3
+	});
 
 export default AssigneeSelect;
