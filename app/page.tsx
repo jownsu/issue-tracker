@@ -1,4 +1,5 @@
 /* COMPONENTS */
+import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
 
@@ -14,6 +15,7 @@ export default async function Home() {
 		<>
 			<IssueSummary open={open} inProgress={inProgress} closed={closed} />
 			<LatestIssues />
+			<IssueChart open={open} inProgress={inProgress} closed={closed} />
 		</>
 	);
 }
