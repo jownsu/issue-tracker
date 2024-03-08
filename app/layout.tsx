@@ -12,8 +12,6 @@ import QueryClientProvider from "./QueryClientProvider";
 
 /* STYLES */
 import "./globals.css";
-import "@radix-ui/themes/styles.css";
-import "./theme-config.css";
 
 const inter = Inter({
 	subsets: ["latin"],

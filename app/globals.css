@@ -1,14 +1,10 @@
 @tailwind base;
+@import "@radix-ui/themes/styles.css";
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
-@media (prefers-color-scheme: dark) {
-}
-
-body {
+.radix-themes {
+	--default-font-family: var(--font-inter);
 }
 
 @layer utilities {
