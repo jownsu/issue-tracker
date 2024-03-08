@@ -1,6 +1,7 @@
 /* NEXT */
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
 
 /* SCHEMA */
 import prisma from "@/prisma/schema";
@@ -28,3 +29,8 @@ const EditIssuePage = async ({ params }: Props) => {
 };
 
 export default EditIssuePage;
+
+export const metadata: Metadata = {
+	title: "Issue Tracker - Dashboard",
+	description: "Edit an issues"
+};

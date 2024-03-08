@@ -1,3 +1,6 @@
+/* NEXT */
+import { Metadata } from "next";
+
 /* CLIENT */
 import prisma from "@/prisma/schema";
 import { Status } from "@prisma/client";
@@ -43,6 +46,11 @@ const IssuesPage = async ({ searchParams }: Props) => {
 			<Pagination currentPage={page} pageSize={pageSize} itemCount={issueCount} />
 		</Flex>
 	);
+};
+
+export const metadata: Metadata = {
+	title: "Issue Tracker - Issue List",
+	description: "View all project issues"
 };
 
 export default IssuesPage;
