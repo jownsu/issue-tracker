@@ -11,8 +11,8 @@ import AuthProvider from "./auth/Provider";
 import QueryClientProvider from "./QueryClientProvider";
 
 /* STYLES */
-import "@radix-ui/themes/styles.css";
 import "./globals.css";
+import "@radix-ui/themes/styles.css";
 import "./theme-config.css";
 
 const inter = Inter({
