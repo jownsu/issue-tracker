@@ -11,7 +11,7 @@ const loading = () => {
 	return (
 		<div>
 			<IssueActions />
-			<Table.Root variant="surface">
+			<Table.Root variant="surface" mt="3">
 				<Table.Header>
 					<Table.Row>
 						<Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
