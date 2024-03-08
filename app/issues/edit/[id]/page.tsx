@@ -1,13 +1,13 @@
 /* NEXT */
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Metadata } from "next";
 
 /* SCHEMA */
 import prisma from "@/prisma/schema";
 
 /* COMPONENTS */
 import IssueFormSkeleton from "../../_components/IssueFormSkeleton";
+import { cache } from "react";
 
 /* COMPONENT */
 
@@ -20,8 +20,12 @@ interface Props {
 	params: { id: string };
 }
 
+const fetchIssue = cache((issueId: number) =>
+	prisma.issue.findUnique({ where: { id: issueId } })
+);
+
 const EditIssuePage = async ({ params }: Props) => {
-	const issue = await prisma.issue.findUnique({ where: { id: +params.id } });
+	const issue = await fetchIssue(+params.id);
 
 	if (!issue) notFound();
 
@@ -30,7 +34,11 @@ const EditIssuePage = async ({ params }: Props) => {
 
 export default EditIssuePage;
 
-export const metadata: Metadata = {
-	title: "Issue Tracker - Dashboard",
-	description: "Edit an issues"
-};
+export async function generateMetadata({ params }: Props) {
+	const issue = await fetchIssue(+params.id);
+
+	return {
+		title: `Edit ${issue?.title}`,
+		description: `Editing issue ${issue?.id}`
+	};
+}

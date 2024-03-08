@@ -1,5 +1,6 @@
 /* NEXT */
 import { notFound } from "next/navigation";
+import { cache } from "react";
 
 /* CLIENT */
 import prisma from "@/prisma/schema";
@@ -18,11 +19,15 @@ interface Props {
 	params: { id: string };
 }
 
+const fetchIssue = cache((issueId: number) =>
+	prisma.issue.findUnique({ where: { id: issueId } })
+);
+
 const IssueDetailsPage = async ({ params }: Props) => {
 	if (isNaN(+params.id)) notFound();
 
 	const session = await getServerSession();
-	const issue = await prisma.issue.findUnique({ where: { id: +params.id } });
+	const issue = await fetchIssue(+params.id);
 
 	if (!issue) notFound();
 
@@ -47,7 +52,7 @@ const IssueDetailsPage = async ({ params }: Props) => {
 export default IssueDetailsPage;
 
 export async function generateMetadata({ params }: Props) {
-	const issue = await prisma.issue.findUnique({ where: { id: +params.id } });
+	const issue = await fetchIssue(+params.id);
 
 	return {
 		title: issue?.title,
