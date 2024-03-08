@@ -1,7 +1,7 @@
-@tailwind base;
+@import "tailwindcss/base";
+@import "@radix-ui/themes/styles.css";
 @tailwind components;
 @tailwind utilities;
-@import "@radix-ui/themes/styles.css";
 
 .radix-themes {
 	--default-font-family: var(--font-inter);
